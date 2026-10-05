@@ -61,13 +61,13 @@ def extract_base_design_id(image_path):
     return f"{category}_{base_name}"
 
 def prepare_data_splits(data_root):
-    candidate_dirs = [Path(data_root), Path("./handlooms"), Path("./handloom_sarees-20261005T110039Z-1-001")]
-    data_paths = [d for d in candidate_dirs if d.exists()]
-    
+    data_path = Path(data_root)
+    if not data_path.exists():
+        # Fallback to local 'archive' if specified path is not found
+        data_path = Path("./archive")
+        
     design_to_images = defaultdict(list)
-    image_paths = []
-    for d in data_paths:
-        image_paths.extend([p for p in d.rglob('*.*') if p.suffix.lower() in {'.jpg', '.jpeg', '.png'}])
+    image_paths = [p for p in data_path.rglob('*.*') if p.suffix.lower() in {'.jpg', '.jpeg', '.png'}]
     
     for p in image_paths:
         design_id = extract_base_design_id(p)
