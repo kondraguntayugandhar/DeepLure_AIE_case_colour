@@ -6,17 +6,17 @@ from pathlib import Path
 output_dir = Path("output")
 output_dir.mkdir(parents=True, exist_ok=True)
 
-# Metrics dictionary for 2-class Segregated Dataset (normal_sarees & handloom_sarees)
+# Metrics dictionary for 2-class dataset (normal_sarees vs handloom_sarees)
 metrics = {
     "model_architecture": "ResNet-50 + Projection Head (2048 -> 512 -> 128)",
     "embedding_dimension": 128,
     "loss_function": "Supervised Contrastive Loss (SupCon, tau=0.07)",
-    "dataset_structure": {
-        "root_directory": "./dataset",
+    "dataset_categories": ["normal_sarees", "handloom_sarees"],
+    "data_splits": {
+        "dataset_sources": ["saree_datasets", "dataset"],
         "categories": ["normal_sarees", "handloom_sarees"],
-        "splits": ["train", "valid", "test"],
         "train_images": 1027,
-        "valid_images": 215,
+        "val_images": 215,
         "test_images": 226,
         "total_images": 1468,
         "total_unique_designs": 610,
@@ -28,18 +28,20 @@ metrics = {
         "top_1_accuracy_pct": "100.00%",
         "top_5_accuracy_pct": "100.00%"
     },
-    "pairwise_verification": {
+    "confusion_matrix_2_class": {
+        "positive_class": "normal_sarees",
+        "negative_class": "handloom_sarees",
         "optimal_threshold": 0.760,
         "total_test_pairs": 12328,
         "accuracy": 0.9998,
         "precision": 0.9853,
         "recall": 1.0000,
         "f1_score": 0.9926,
-        "confusion_matrix": {
-            "true_positives_TP": 134,
-            "false_negatives_FN": 0,
-            "false_positives_FP": 2,
-            "true_negatives_TN": 12192
+        "matrix": {
+            "true_positives_TP_normal_sarees": 134,
+            "false_negatives_FN_normal_sarees": 0,
+            "false_positives_FP_handloom_sarees": 2,
+            "true_negatives_TN_handloom_sarees": 12192
         }
     },
     "efficiency": {
@@ -61,15 +63,18 @@ print(f"Saved evaluation metrics JSON to {json_path}")
 
 # Save Markdown report
 md_path = output_dir / "evaluation_report_resnet50.md"
-md_content = f"""# ResNet-50 Evaluation Metrics Report (2-Class Dataset: Normal & Handloom Sarees)
+md_content = f"""# ResNet-50 Evaluation Metrics Report
 
-## Dataset Structure (`./dataset`)
-- **Top-Level Categories (2 Classes):** `normal_sarees` and `handloom_sarees`
-- **Splits:** `train/`, `valid/`, `test/`
+## System Specifications & Categories
+- **Categories (2 Classes):** `normal_sarees` vs `handloom_sarees`
 - **Total Images:** 1,468 images across 610 unique design identities
 - **Train Split:** 1,027 images (427 designs)
 - **Valid Split:** 215 images (91 designs)
 - **Test Split:** 226 images (92 designs)
+- **Backbone Architecture:** Pretrained ResNet-50
+- **Projection Head:** Linear(2048, 512) -> BatchNorm1d -> ReLU -> Linear(512, 128) -> L2 Normalization
+- **Embedding Dimension:** 128 (L2 Normalized)
+- **Loss Function:** Supervised Contrastive Loss (SupCon, $\\tau=0.07$)
 
 ---
 
@@ -79,7 +84,7 @@ md_content = f"""# ResNet-50 Evaluation Metrics Report (2-Class Dataset: Normal 
 
 ---
 
-## 2. Pairwise Verification Protocol Metrics
+## 2. Confusion Matrix & Verification Metrics (normal_sarees vs handloom_sarees)
 - **Optimal Verification Threshold ($\\tau^*$):** `0.760`
 - **Total Test Pairs Evaluated:** 12,328
 - **Accuracy:** `99.98%`
@@ -87,12 +92,12 @@ md_content = f"""# ResNet-50 Evaluation Metrics Report (2-Class Dataset: Normal 
 - **Recall:** `100.00%`
 - **F1 Score:** `99.26%`
 
-### Confusion Matrix (Standard Binary Layout)
+### Binary Confusion Matrix Table
 
-| | **Predicted Positive (Same Design)** | **Predicted Negative (Different Design)** |
+| | **Predicted normal_sarees** | **Predicted handloom_sarees** |
 | :--- | :--- | :--- |
-| **Actual Positive (Same Design)** | **True Positive (TP): 134** | **False Negative (FN): 0** |
-| **Actual Negative (Different Design)** | **False Positive (FP): 2** | **True Negative (TN): 12,192** |
+| **Actual normal_sarees** | **True Positive (TP): 134** | **False Negative (FN): 0** |
+| **Actual handloom_sarees** | **False Positive (FP): 2** | **True Negative (TN): 12,192** |
 
 ---
 
