@@ -22,7 +22,7 @@ from sklearn.metrics import precision_recall_fscore_support, roc_auc_score, conf
 # 1. CONFIGURATION & REPRODUCIBILITY
 # =====================================================================
 class Config:
-    DATA_ROOT = Path("./archive")
+    DATA_ROOT = Path("./saree_datasets")
     SPLIT_METADATA = Path("splits_metadata.json")
     CHECKPOINT_DIR = Path("checkpoints")
     BEST_MODEL_PATH = CHECKPOINT_DIR / "best_saree_model.pth"
@@ -61,10 +61,15 @@ def extract_base_design_id(image_path):
     return f"{category}_{base_name}"
 
 def prepare_data_splits(data_root):
-    data_path = Path(data_root)
-    if not data_path.exists():
-        # Fallback to local 'archive' if specified path is not found
-        data_path = Path("./archive")
+    candidate_paths = [Path(data_root), Path("./saree_datasets"), Path("./archive")]
+    data_path = None
+    for p in candidate_paths:
+        if p.exists() and len(list(p.rglob('*.*'))) > 0:
+            data_path = p
+            break
+            
+    if data_path is None:
+        raise FileNotFoundError(f"Could not locate dataset in any of {candidate_paths}")
         
     design_to_images = defaultdict(list)
     image_paths = [p for p in data_path.rglob('*.*') if p.suffix.lower() in {'.jpg', '.jpeg', '.png'}]
