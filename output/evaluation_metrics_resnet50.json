@@ -2,15 +2,22 @@
   "model_architecture": "ResNet-50 + Projection Head (2048 -> 512 -> 128)",
   "embedding_dimension": 128,
   "loss_function": "Supervised Contrastive Loss (SupCon, tau=0.07)",
-  "data_splits": {
-    "dataset_sources": [
-      "archive"
+  "dataset_structure": {
+    "root_directory": "./dataset",
+    "categories": [
+      "normal_sarees",
+      "handloom_sarees"
     ],
+    "splits": [
+      "train",
+      "valid",
+      "test"
+    ],
+    "train_images": 1027,
+    "valid_images": 215,
+    "test_images": 226,
     "total_images": 1468,
     "total_unique_designs": 610,
-    "train_designs": 427,
-    "val_designs": 91,
-    "test_designs": 92,
     "zero_leakage_verified": true
   },
   "identification_retrieval": {

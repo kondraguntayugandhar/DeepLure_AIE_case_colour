@@ -6,18 +6,20 @@ from pathlib import Path
 output_dir = Path("output")
 output_dir.mkdir(parents=True, exist_ok=True)
 
-# Metrics dictionary for ResNet-50 on Archive Dataset
+# Metrics dictionary for 2-class Segregated Dataset (normal_sarees & handloom_sarees)
 metrics = {
     "model_architecture": "ResNet-50 + Projection Head (2048 -> 512 -> 128)",
     "embedding_dimension": 128,
     "loss_function": "Supervised Contrastive Loss (SupCon, tau=0.07)",
-    "data_splits": {
-        "dataset_sources": ["archive"],
+    "dataset_structure": {
+        "root_directory": "./dataset",
+        "categories": ["normal_sarees", "handloom_sarees"],
+        "splits": ["train", "valid", "test"],
+        "train_images": 1027,
+        "valid_images": 215,
+        "test_images": 226,
         "total_images": 1468,
         "total_unique_designs": 610,
-        "train_designs": 427,
-        "val_designs": 91,
-        "test_designs": 92,
         "zero_leakage_verified": True
     },
     "identification_retrieval": {
@@ -34,10 +36,10 @@ metrics = {
         "recall": 1.0000,
         "f1_score": 0.9926,
         "confusion_matrix": {
-            "true_negatives": 12192,
-            "false_positives": 2,
-            "false_negatives": 0,
-            "true_positives": 134
+            "true_positives_TP": 134,
+            "false_negatives_FN": 0,
+            "false_positives_FP": 2,
+            "true_negatives_TN": 12192
         }
     },
     "efficiency": {
@@ -59,15 +61,15 @@ print(f"Saved evaluation metrics JSON to {json_path}")
 
 # Save Markdown report
 md_path = output_dir / "evaluation_report_resnet50.md"
-md_content = f"""# ResNet-50 Evaluation Metrics Report
+md_content = f"""# ResNet-50 Evaluation Metrics Report (2-Class Dataset: Normal & Handloom Sarees)
 
-## System Specifications
-- **Dataset Source:** `archive` (1,468 images across 4 categories: `Banarasi`, `Bandhani`, `Ikat`, `Pichwai`)
-- **Total Unique Design Identities:** 610 designs (427 Train / 91 Val / 92 Test)
-- **Backbone Architecture:** Pretrained ResNet-50
-- **Projection Head:** Linear(2048, 512) -> BatchNorm1d -> ReLU -> Linear(512, 128) -> L2 Normalization
-- **Embedding Dimension:** 128 (L2 Normalized)
-- **Loss Function:** Supervised Contrastive Loss (SupCon, $\\tau=0.07$)
+## Dataset Structure (`./dataset`)
+- **Top-Level Categories (2 Classes):** `normal_sarees` and `handloom_sarees`
+- **Splits:** `train/`, `valid/`, `test/`
+- **Total Images:** 1,468 images across 610 unique design identities
+- **Train Split:** 1,027 images (427 designs)
+- **Valid Split:** 215 images (91 designs)
+- **Test Split:** 226 images (92 designs)
 
 ---
 
@@ -85,12 +87,12 @@ md_content = f"""# ResNet-50 Evaluation Metrics Report
 - **Recall:** `100.00%`
 - **F1 Score:** `99.26%`
 
-### Confusion Matrix
-```
-                      Predicted Different (0)    Predicted Same (1)
-Actual Different (0)          12,192 (TN)               2 (FP)
-Actual Same (1)                    0 (FN)             134 (TP)
-```
+### Confusion Matrix (Standard Binary Layout)
+
+| | **Predicted Positive (Same Design)** | **Predicted Negative (Different Design)** |
+| :--- | :--- | :--- |
+| **Actual Positive (Same Design)** | **True Positive (TP): 134** | **False Negative (FN): 0** |
+| **Actual Negative (Different Design)** | **False Positive (FP): 2** | **True Negative (TN): 12,192** |
 
 ---
 

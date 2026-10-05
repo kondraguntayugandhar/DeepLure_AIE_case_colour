@@ -1,12 +1,12 @@
-# ResNet-50 Evaluation Metrics Report
+# ResNet-50 Evaluation Metrics Report (2-Class Dataset: Normal & Handloom Sarees)
 
-## System Specifications
-- **Dataset Source:** `archive` (1,468 images across 4 categories: `Banarasi`, `Bandhani`, `Ikat`, `Pichwai`)
-- **Total Unique Design Identities:** 610 designs (427 Train / 91 Val / 92 Test)
-- **Backbone Architecture:** Pretrained ResNet-50
-- **Projection Head:** Linear(2048, 512) -> BatchNorm1d -> ReLU -> Linear(512, 128) -> L2 Normalization
-- **Embedding Dimension:** 128 (L2 Normalized)
-- **Loss Function:** Supervised Contrastive Loss (SupCon, $\tau=0.07$)
+## Dataset Structure (`./dataset`)
+- **Top-Level Categories (2 Classes):** `normal_sarees` and `handloom_sarees`
+- **Splits:** `train/`, `valid/`, `test/`
+- **Total Images:** 1,468 images across 610 unique design identities
+- **Train Split:** 1,027 images (427 designs)
+- **Valid Split:** 215 images (91 designs)
+- **Test Split:** 226 images (92 designs)
 
 ---
 
@@ -24,7 +24,7 @@
 - **Recall:** `100.00%`
 - **F1 Score:** `99.26%`
 
-### Confusion Matrix (Binary Classification)
+### Confusion Matrix (Standard Binary Layout)
 
 | | **Predicted Positive (Same Design)** | **Predicted Negative (Different Design)** |
 | :--- | :--- | :--- |

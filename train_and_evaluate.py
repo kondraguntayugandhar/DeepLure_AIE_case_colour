@@ -22,7 +22,7 @@ from sklearn.metrics import precision_recall_fscore_support, roc_auc_score, conf
 # 1. CONFIGURATION & REPRODUCIBILITY
 # =====================================================================
 class Config:
-    DATA_ROOT = Path("./saree_datasets")
+    DATA_ROOT = Path("./dataset")
     SPLIT_METADATA = Path("splits_metadata.json")
     CHECKPOINT_DIR = Path("checkpoints")
     BEST_MODEL_PATH = CHECKPOINT_DIR / "best_saree_model.pth"
@@ -61,7 +61,7 @@ def extract_base_design_id(image_path):
     return f"{category}_{base_name}"
 
 def prepare_data_splits(data_root):
-    candidate_paths = [Path(data_root), Path("./saree_datasets"), Path("./archive")]
+    candidate_paths = [Path(data_root), Path("./dataset"), Path("./saree_datasets"), Path("./archive")]
     data_path = None
     for p in candidate_paths:
         if p.exists() and len(list(p.rglob('*.*'))) > 0:
