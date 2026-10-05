@@ -64,7 +64,7 @@ metrics = {
 
 # Save JSON file
 json_path = output_dir / "evaluation_metrics_resnet50.json"
-with open(json_path, "w") as f:
+with open(json_path, "w", encoding="utf-8") as f:
     json.dump(metrics, f, indent=2)
 
 print(f"Saved evaluation metrics JSON to {json_path}")
@@ -75,7 +75,7 @@ md_content = f"""# ResNet-50 Evaluation Metrics Report (5 Epochs Training)
 
 ## System Specifications & Categories
 - **Epochs Trained:** 5
-- **Loss Progression:** Epoch 1: 4.8872 → Epoch 2: 4.0934 → Epoch 3: 3.4930 → Epoch 4: 3.0180 → Epoch 5: 2.6288
+- **Loss Progression:** Epoch 1: 4.8872 -> Epoch 2: 4.0934 -> Epoch 3: 3.4930 -> Epoch 4: 3.0180 -> Epoch 5: 2.6288
 - **Categories (2 Classes):** `normal_sarees` vs `handloom_sarees`
 - **Total Images:** 1,391 images across 421 unique design identities
 - **Train Split:** 978 images (294 designs)
@@ -119,7 +119,7 @@ md_content = f"""# ResNet-50 Evaluation Metrics Report (5 Epochs Training)
 - **Model Checkpoint Size:** `94.24 MB`
 """
 
-with open(md_path, "w") as f:
+with open(md_path, "w", encoding="utf-8") as f:
     f.write(md_content)
 
 print(f"Saved evaluation report Markdown to {md_path}")
