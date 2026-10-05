@@ -24,12 +24,12 @@
 - **Recall:** `100.00%`
 - **F1 Score:** `99.26%`
 
-### Confusion Matrix
-```
-                      Predicted Different (0)    Predicted Same (1)
-Actual Different (0)          12,192 (TN)               2 (FP)
-Actual Same (1)                    0 (FN)             134 (TP)
-```
+### Confusion Matrix (Binary Classification)
+
+| | **Predicted Positive (Same Design)** | **Predicted Negative (Different Design)** |
+| :--- | :--- | :--- |
+| **Actual Positive (Same Design)** | **True Positive (TP): 134** | **False Negative (FN): 0** |
+| **Actual Negative (Different Design)** | **False Positive (FP): 2** | **True Negative (TN): 12,192** |
 
 ---
 
