@@ -23,32 +23,32 @@
     "zero_leakage_verified": true
   },
   "identification_retrieval": {
-    "top_1_accuracy": 1.0,
-    "top_5_accuracy": 1.0,
-    "top_1_accuracy_pct": "100.00%",
-    "top_5_accuracy_pct": "100.00%"
+    "top_1_accuracy": 0.763,
+    "top_5_accuracy": 0.8,
+    "top_1_accuracy_pct": "76.30%",
+    "top_5_accuracy_pct": "80.00%"
   },
   "confusion_matrix_2_class": {
-    "positive_class": "normal_sarees",
-    "negative_class": "handloom_sarees",
-    "optimal_threshold": 0.76,
-    "total_test_pairs": 12328,
-    "accuracy": 0.9998,
-    "precision": 0.9853,
-    "recall": 1.0,
-    "f1_score": 0.9926,
+    "positive_class": "handloom_sarees",
+    "negative_class": "normal_sarees",
+    "optimal_threshold": 0.88,
+    "total_test_pairs": 13535,
+    "accuracy": 0.9974,
+    "precision": 0.9808,
+    "recall": 0.7556,
+    "f1_score": 0.8536,
     "matrix": {
-      "true_positives_TP_normal_sarees": 134,
-      "false_negatives_FN_normal_sarees": 0,
-      "false_positives_FP_handloom_sarees": 2,
-      "true_negatives_TN_handloom_sarees": 12192
+      "true_negatives_TN_normal_sarees": 13498,
+      "false_positives_FP_normal_sarees": 2,
+      "false_negatives_FN_handloom_sarees": 33,
+      "true_positives_TP_handloom_sarees": 102
     }
   },
   "efficiency": {
     "total_parameters": 24623808,
     "trainable_parameters": 24623808,
     "embedding_size_bytes": 512,
-    "inference_latency_cpu_ms": 65.94,
+    "inference_latency_cpu_ms": 68.8,
     "inference_latency_gpu_ms": 4.2,
     "checkpoint_size_mb": 94.24
   }

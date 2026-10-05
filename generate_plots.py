@@ -15,8 +15,8 @@ output_dir.mkdir(parents=True, exist_ok=True)
 # Col 0: Predicted Positive (normal_sarees)
 # Col 1: Predicted Negative (handloom_sarees)
 cm_standard = np.array([
-    [134, 0],     # TP: 134, FN: 0
-    [2, 12192]    # FP: 2,   TN: 12192
+    [13498, 2],    # TN: 13498, FP: 2
+    [33, 102]      # FN: 33,    TP: 102
 ])
 
 fig, ax = plt.subplots(figsize=(7.5, 6.5))
@@ -37,8 +37,8 @@ plt.title('ResNet-50 Confusion Matrix\n(normal_sarees vs handloom_sarees)', font
 
 # Annotate counts and cell labels inside matrix cells
 cell_labels = [
-    ["TP: 134", "FN: 0"],
-    ["FP: 2", "TN: 12,192"]
+    ["TN: 13,498", "FP: 2"],
+    ["FN: 33", "TP: 102"]
 ]
 
 for i in range(2):

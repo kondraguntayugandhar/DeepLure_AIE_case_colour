@@ -14,31 +14,31 @@
 ---
 
 ## 1. Identification & Retrieval Metrics (Unseen Test Set)
-- **Top-1 Accuracy:** 100.00%
-- **Top-5 Accuracy:** 100.00%
+- **Top-1 Accuracy:** 76.30%
+- **Top-5 Accuracy:** 80.00%
 
 ---
 
 ## 2. Confusion Matrix & Verification Metrics (normal_sarees vs handloom_sarees)
-- **Optimal Verification Threshold ($\tau^*$):** `0.760`
-- **Total Test Pairs Evaluated:** 12,328
-- **Accuracy:** `99.98%`
-- **Precision:** `98.53%`
-- **Recall:** `100.00%`
-- **F1 Score:** `99.26%`
+- **Optimal Verification Threshold ($\tau^*$):** `0.880`
+- **Total Test Pairs Evaluated:** 13,535
+- **Accuracy:** `99.74%`
+- **Precision:** `98.08%`
+- **Recall:** `75.56%`
+- **F1 Score:** `85.36%`
 
 ### Binary Confusion Matrix Table
 
 | | **Predicted normal_sarees** | **Predicted handloom_sarees** |
 | :--- | :--- | :--- |
-| **Actual normal_sarees** | **True Positive (TP): 134** | **False Negative (FN): 0** |
-| **Actual handloom_sarees** | **False Positive (FP): 2** | **True Negative (TN): 12,192** |
+| **Actual normal_sarees** | **True Negative (TN): 13,498** | **False Positive (FP): 2** |
+| **Actual handloom_sarees** | **False Negative (FN): 33** | **True Positive (TP): 102** |
 
 ---
 
 ## 3. Computational Efficiency & Model Footprint
 - **Total Parameters:** `24,623,808` (~24.6 Million)
 - **Trainable Parameters:** `24,623,808`
-- **Inference Latency (CPU):** `65.94 ms` / image
+- **Inference Latency (CPU):** `68.80 ms` / image
 - **Inference Latency (GPU T4):** `~4.2 ms` / image
 - **Model Checkpoint Size:** `94.24 MB`
