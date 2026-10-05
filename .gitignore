@@ -1,0 +1,17 @@
+# Python / Virtual Environment
+.venv/
+__pycache__/
+*.pyc
+
+# Datasets (do not track large dataset files)
+archive/
+handloom_sarees-20261005T110039Z-1-001/
+*.jpg
+*.jpeg
+*.png
+*.webp
+
+# Model Weights & Checkpoints
+checkpoints/
+*.pth
+*.pt
