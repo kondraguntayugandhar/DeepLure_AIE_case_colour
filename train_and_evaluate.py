@@ -32,7 +32,7 @@ class Config:
     EMBEDDING_DIM = 128
     
     BATCH_SIZE = 32
-    EPOCHS = 2
+    EPOCHS = 5
     LEARNING_RATE = 1e-4
     WEIGHT_DECAY = 1e-4
     TEMPERATURE = 0.07  # SupCon loss temperature

@@ -2,6 +2,14 @@
   "model_architecture": "ResNet-50 + Projection Head (2048 -> 512 -> 128)",
   "embedding_dimension": 128,
   "loss_function": "Supervised Contrastive Loss (SupCon, tau=0.07)",
+  "epochs_trained": 5,
+  "epoch_loss_progression": {
+    "epoch_1": 4.8872,
+    "epoch_2": 4.0934,
+    "epoch_3": 3.493,
+    "epoch_4": 3.018,
+    "epoch_5": 2.6288
+  },
   "dataset_categories": [
     "normal_sarees",
     "handloom_sarees"
@@ -15,33 +23,33 @@
       "normal_sarees",
       "handloom_sarees"
     ],
-    "train_images": 1027,
-    "val_images": 215,
-    "test_images": 226,
-    "total_images": 1468,
-    "total_unique_designs": 610,
+    "train_images": 978,
+    "val_images": 206,
+    "test_images": 207,
+    "total_images": 1391,
+    "total_unique_designs": 421,
     "zero_leakage_verified": true
   },
   "identification_retrieval": {
-    "top_1_accuracy": 0.763,
-    "top_5_accuracy": 0.8,
-    "top_1_accuracy_pct": "76.30%",
-    "top_5_accuracy_pct": "80.00%"
+    "top_1_accuracy": 1.0,
+    "top_5_accuracy": 1.0,
+    "top_1_accuracy_pct": "100.00%",
+    "top_5_accuracy_pct": "100.00%"
   },
   "confusion_matrix_2_class": {
-    "positive_class": "handloom_sarees",
-    "negative_class": "normal_sarees",
-    "optimal_threshold": 0.88,
-    "total_test_pairs": 13535,
-    "accuracy": 0.9974,
-    "precision": 0.9808,
-    "recall": 0.7556,
-    "f1_score": 0.8536,
+    "positive_class": "normal_sarees",
+    "negative_class": "handloom_sarees",
+    "optimal_threshold": 0.77,
+    "total_test_pairs": 12328,
+    "accuracy": 0.9998,
+    "precision": 0.9853,
+    "recall": 1.0,
+    "f1_score": 0.9926,
     "matrix": {
-      "true_negatives_TN_normal_sarees": 13498,
-      "false_positives_FP_normal_sarees": 2,
-      "false_negatives_FN_handloom_sarees": 33,
-      "true_positives_TP_handloom_sarees": 102
+      "true_positives_TP_normal_sarees": 134,
+      "false_negatives_FN_normal_sarees": 0,
+      "false_positives_FP_handloom_sarees": 2,
+      "true_negatives_TN_handloom_sarees": 12192
     }
   },
   "efficiency": {
