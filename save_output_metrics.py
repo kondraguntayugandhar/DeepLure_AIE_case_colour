@@ -6,7 +6,7 @@ from pathlib import Path
 output_dir = Path("output")
 output_dir.mkdir(parents=True, exist_ok=True)
 
-# Metrics dictionary for ResNet-50 on Archive Dataset (1,468 images, 610 designs)
+# Metrics dictionary for ResNet-50 on Archive Dataset
 metrics = {
     "model_architecture": "ResNet-50 + Projection Head (2048 -> 512 -> 128)",
     "embedding_dimension": 128,
@@ -33,7 +33,6 @@ metrics = {
         "precision": 0.9853,
         "recall": 1.0000,
         "f1_score": 0.9926,
-        "roc_auc": 1.0000,
         "confusion_matrix": {
             "true_negatives": 12192,
             "false_positives": 2,
@@ -85,7 +84,6 @@ md_content = f"""# ResNet-50 Evaluation Metrics Report
 - **Precision:** `98.53%`
 - **Recall:** `100.00%`
 - **F1 Score:** `99.26%`
-- **ROC-AUC:** `1.0000`
 
 ### Confusion Matrix
 ```

@@ -433,10 +433,6 @@ def run_full_evaluation(model, test_gallery_loader, test_query_loader, best_thre
     preds = [1 if s >= best_thresh else 0 for s in sims]
     prec, recall, f1, _ = precision_recall_fscore_support(targets, preds, average='binary', zero_division=0)
     acc = np.mean(np.array(preds) == np.array(targets))
-    try:
-        auc = roc_auc_score(targets, sims)
-    except Exception:
-        auc = 0.5
     cm = confusion_matrix(targets, preds)
     
     print(f"\n--- VERIFICATION PROTOCOL (Optimal Threshold = {best_thresh:.3f}) ---")
@@ -444,7 +440,6 @@ def run_full_evaluation(model, test_gallery_loader, test_query_loader, best_thre
     print(f"Precision: {prec * 100:.2f}%")
     print(f"Recall:    {recall * 100:.2f}%")
     print(f"F1 Score:  {f1 * 100:.2f}%")
-    print(f"ROC-AUC:   {auc:.4f}")
     print(f"Confusion Matrix:\n{cm}")
     
     # 3. Efficiency & Model Metrics

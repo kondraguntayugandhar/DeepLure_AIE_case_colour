@@ -23,7 +23,6 @@
 - **Precision:** `98.53%`
 - **Recall:** `100.00%`
 - **F1 Score:** `99.26%`
-- **ROC-AUC:** `1.0000`
 
 ### Confusion Matrix
 ```
