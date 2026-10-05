@@ -2,12 +2,12 @@
 
 ## System Specifications & Categories
 - **Epochs Trained:** 5
-- **Loss Progression:** Epoch 1: 4.8872 -> Epoch 2: 4.0934 -> Epoch 3: 3.4930 -> Epoch 4: 3.0180 -> Epoch 5: 2.6288
+- **Loss Progression:** Epoch 1: 0.2378 -> Epoch 2: 0.1312 -> Epoch 3: 0.1442 -> Epoch 4: 0.1597 -> Epoch 5: 0.1305
 - **Categories (2 Classes):** `normal_sarees` vs `handloom_sarees`
-- **Total Images:** 1,391 images across 421 unique design identities
-- **Train Split:** 978 images (294 designs)
-- **Valid Split:** 206 images (63 designs)
-- **Test Split:** 207 images (64 designs)
+- **Total Images:** 1,468 images across 610 unique design identities
+- **Train Split:** 1,027 images (427 designs)
+- **Valid Split:** 215 images (91 designs)
+- **Test Split:** 226 images (92 designs)
 - **Backbone Architecture:** Pretrained ResNet-50
 - **Projection Head:** Linear(2048, 512) -> BatchNorm1d -> ReLU -> Linear(512, 128) -> L2 Normalization
 - **Embedding Dimension:** 128 (L2 Normalized)
@@ -16,31 +16,31 @@
 ---
 
 ## 1. Identification & Retrieval Metrics (Unseen Test Set)
-- **Top-1 Accuracy:** 100.00%
-- **Top-5 Accuracy:** 100.00%
+- **Top-1 Accuracy:** 76.30%
+- **Top-5 Accuracy:** 81.48%
 
 ---
 
 ## 2. Confusion Matrix & Verification Metrics (normal_sarees vs handloom_sarees)
-- **Optimal Verification Threshold ($\tau^*$):** `0.770`
-- **Total Test Pairs Evaluated:** 12,328
-- **Accuracy:** `99.98%`
-- **Precision:** `98.53%`
-- **Recall:** `100.00%`
-- **F1 Score:** `99.26%`
+- **Optimal Verification Threshold ($\tau^*$):** `0.900`
+- **Total Test Pairs Evaluated:** 13,535
+- **Accuracy:** `99.74%`
+- **Precision:** `98.08%`
+- **Recall:** `75.56%`
+- **F1 Score:** `85.36%`
 
 ### Binary Confusion Matrix Table
 
 | | **Predicted normal_sarees** | **Predicted handloom_sarees** |
 | :--- | :--- | :--- |
-| **Actual normal_sarees** | **True Positive (TP): 134** | **False Negative (FN): 0** |
-| **Actual handloom_sarees** | **False Positive (FP): 2** | **True Negative (TN): 12,192** |
+| **Actual normal_sarees** | **True Negative (TN): 13,498** | **False Positive (FP): 2** |
+| **Actual handloom_sarees** | **False Negative (FN): 33** | **True Positive (TP): 102** |
 
 ---
 
 ## 3. Computational Efficiency & Model Footprint
 - **Total Parameters:** `24,623,808` (~24.6 Million)
 - **Trainable Parameters:** `24,623,808`
-- **Inference Latency (CPU):** `68.80 ms` / image
+- **Inference Latency (CPU):** `65.12 ms` / image
 - **Inference Latency (GPU T4):** `~4.2 ms` / image
 - **Model Checkpoint Size:** `94.24 MB`
